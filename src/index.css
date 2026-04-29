@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors from Source HTML */
+  --color-blue: #0ea5e9;
+  --color-gold: #eab308;
+  --color-dark: #0a0f1e;
+  --color-dark2: #0f1729;
+  --color-dark3: #151e35;
+
+  /* Existing mappings for compatibility */
+  --color-primary: var(--color-blue);
+  --color-on-primary: #00344d;
+  --color-primary-container: var(--color-blue);
+  --color-secondary: var(--color-gold);
+  --color-on-secondary: #3f2e00;
+
+  --color-background: var(--color-dark);
+  --color-surface: var(--color-dark2);
+  --color-on-surface: #e2e8f0;
+  --color-on-surface-variant: #94a3b8;
+
+  /* Fonts */
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-rajdhani: "Rajdhani", sans-serif;
+  --font-lexend: "Lexend", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  
+  --font-heading: var(--font-bebas);
+  --font-sub: var(--font-rajdhani);
+  --font-body: var(--font-jakarta);
+
+  /* Spacing */
+  --spacing-xl: 80px;
+  --spacing-lg: 48px;
+  --spacing-md: 24px;
+  --spacing-sm: 12px;
+  --spacing-xs: 4px;
+
+  --radius-xl: 1.5rem;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 2px;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-[#020617] text-on-surface font-jakarta antialiased selection:bg-sky-500/30;
+    min-height: 100dvh;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(234, 179, 8, 0.05) 0%, transparent 40%);
+  }
+
+  body::before {
+    content: "";
+    @apply fixed inset-0 pointer-events-none z-50 opacity-[0.03];
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-lexend tracking-tighter;
+  }
+}
+
+@utility glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@utility glass-stroke {
+  border: 1px solid transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@utility hover-3d {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  &:hover {
+    transform: perspective(1000px) rotateX(4deg) rotateY(4deg) translateZ(20px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+@utility hero-glow {
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+}
+
+@utility text-gradient-sky {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-sky-300 via-sky-500 to-blue-700;
+}
+
+@utility text-gradient-gold {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-amber-200 via-amber-400 to-yellow-600;
+}
